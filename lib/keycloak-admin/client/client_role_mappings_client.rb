@@ -21,6 +21,16 @@ module KeycloakAdmin
       end
     end
 
+    def delete(role_representation_list)
+      execute_http do
+        RestClient::Request.execute(method: :delete,
+          url: base_url,
+          payload: role_representation_list.to_json,
+          headers: headers
+        )
+      end
+    end
+
     def list_available_url
       "#{@user_resource.resource_url}/role-mappings/clients/#{@client_id}/available"
     end
