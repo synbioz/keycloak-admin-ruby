@@ -13,5 +13,14 @@ module KeycloakAdmin
       role.client_role = hash["clientRole"]
       role
     end
+
+    def to_post
+      {
+        "id" => id,
+        "name" => name,
+        "composite" => composite,
+        "clientRole" => client_role
+      }
+    end
   end
 end
