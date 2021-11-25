@@ -15,6 +15,13 @@ module KeycloakAdmin
       :federated_identities,
       :required_actions
 
+    def initialize(attributes = {})
+      attributes.each do |key, value|
+        setter = "#{key}="
+        send(setter, value) if respond_to?(setter.to_sym, false)
+      end
+    end
+
     def self.from_hash(hash)
       user                      = new
       user.id                   = hash["id"]
